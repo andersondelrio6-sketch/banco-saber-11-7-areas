@@ -57,6 +57,7 @@ app.querySelectorAll(".ac").forEach(b=>b.onclick=()=>start(AREAS[+b.dataset.i]))
 function load(t){app.innerHTML=`<div class="load" aria-live="polite">${t}</div>`}
 function start(a){const bank=BANK[a.n]||[];S={a,qs:shuf(bank).slice(0,N),idx:0,ans:[],batches:N/B,loading:false,err:null};show()}
 function adv(){if(!S)return;S.idx<S.qs.length?show():end()}
+const total=()=>N,good=()=>S.ans.filter((a,k)=>a===S.qs[k].k).length;
 function show(){const q=S.qs[S.idx],T=N;
 app.innerHTML=`<div class="meta"><span>${S.a.n} · ${S.idx+1} de ${T}</span><span>${good()} correctas</span></div><div class="bar"><i style="width:${S.idx/T*100}%"></i></div><div class="card"><div class="ctx">${esc(q.c)}</div>${gfx(q.g)}<p class="q">${esc(q.q)}</p>${q.o.map((o,k)=>`<button class="opt" data-k="${k}"><b>${L[k]}.</b><span>${esc(o)}</span></button>`).join("")}<div id="fb" aria-live="polite"></div></div>`;
 app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.k));
